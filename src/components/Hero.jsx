@@ -1,116 +1,147 @@
 import React from "react";
 
+const styleSheet = `
+.hero-banner {
+  background-image: url('/assets/bannermob.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .hero-banner {
+    background-image: url('/assets/banner.png');
+  }
+}
+
+.font-headline {
+  font-family: 'SF Pro', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 60px;
+}
+
+@media (max-width: 640px) {
+  .font-headline {
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
+
+/* ===== Smooth Entrance Animation ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.fade-delay-1 { animation-delay: 0.2s; }
+.fade-delay-2 { animation-delay: 0.4s; }
+.fade-delay-3 { animation-delay: 0.6s; }
+.fade-delay-4 { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+`;
+
 const Hero = () => {
   return (
-    <section
-      id="hero-section"
-      className="relative w-full h-[130vh] md:h-[140vh] overflow-hidden text-white flex flex-col">
+    <>
+      <style>{styleSheet}</style>
 
-      {/* ---------------- BACKGROUND VIDEO ---------------- */}
-      <video
-        className="absolute inset-0 w-full h-[100%] object-cover"
-        src="/assets/bgvideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-      ></video>
+      {/* ================= HERO SECTION ================= */}
+      <section
+        id="hero-section"
+        className="hero-banner relative w-full h-screen text-white flex items-center"
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/45"></div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/45"></div>
+        {/* LEFT CONTENT */}
+        <div className="relative z-10 mt-10 w-full">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl space-y-8 fade-up">
 
-      {/* ---------------- LEFT SIDE LOGO BOX ---------------- */}
-      <div className="relative z-20 flex flex-col justify-start items-start mt-28 md:mt-36 px-6 w-full max-w-6xl mx-auto">
+              {/* Badge */}
+              <span className="inline-block bg-[#1C2D43] px-4 py-1.5 rounded-full text-sm font-semibold border border-yellow-400/30 fade-up fade-delay-1">
+                ADMISSIONS OPEN 2025–26
+              </span>
 
-        <div className="bg-black/40 backdrop-blur-md px-10 py-6 rounded-xl shadow-2xl max-w-xl text-left border border-white/10">
-          
-          {/* Logo Image */}
-          <img
-            src="/assets/logo.png"
-            alt="AVI Consultants Logo"
-            className="h-16 md:h-20 mb-3 object-contain brightness-0 invert"
-          />
+              {/* Heading */}
+              <h1 className="font-headline tracking-tight text-left fade-up fade-delay-2">
+                Aikyam School
+                <span
+                  className="block font-light italic"
+                  style={{ fontFamily: "'Instrument Serif', serif" }}
+                >
+                  Premium Preschool & Daycare
+                </span>
+              </h1>
 
-          {/* White Bold Logo Text */}
-          <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-wide mb-2">
-            AVI CONSULTANTS
-          </h1>
+              {/* Description */}
+              <p className="text-gray-200 text-base sm:text-lg font-medium max-w-2xl text-left fade-up fade-delay-3">
+                Secure your child’s place at <b>Aikyam School</b> — a nurturing,
+                play-based environment for <b>Daycare, Toddler, Play Group,
+                Nursery, LKG and UKG</b>.
+                <br />
+                Apply now for the 2025–26 academic year!
+              </p>
 
-          {/* Sub Tagline */}
-          <p className="text-yellow-400 text-lg md:text-xl font-semibold leading-snug">
-            “India’s Premier Engineering, Valuation & Strategic Advisory Experts”
-          </p>
+              {/* CTA BUTTON */}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfbPNn-JeJn3qJRY5bMVg7luMmDG_ztUE-qcGxy6sJyLRjwOg/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-10 fade-up fade-delay-4"
+              >
+                <button
+                  className="px-8 py-3 rounded-[16px] font-semibold text-sm sm:text-base text-black
+                  cursor-pointer transition transform hover:scale-105 active:scale-95"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFD54F 0%, #FFC107 100%)",
+                    boxShadow:
+                      "0px -6px 14px #FFFFFF7A inset, 0px 6px 18px #0000001A",
+                  }}
+                >
+                  Apply Now
+                </button>
+              </a>
+
+              {/* ================= ICON POINTS ================= */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 max-w-3xl fade-up fade-delay-4">
+
+                <div className="flex items-center space-x-3">
+                  <i className="fa-solid fa-city text-3xl text-yellow-300"></i>
+                  <p className="font-semibold text-xl">1 City</p>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <i className="fa-solid fa-school text-3xl text-yellow-300"></i>
+                  <p className="font-semibold text-xl">1 Center</p>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <i className="fa-solid fa-child-reaching text-3xl text-yellow-300"></i>
+                  <p className="font-semibold text-xl">Child-Centric</p>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <i className="fa-solid fa-heart text-3xl text-yellow-300"></i>
+                  <p className="font-semibold text-xl">Holistic Care</p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
         </div>
-
-        {/* ---------------- FEATURE TILES ---------------- */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-10 w-full">
-
-          {/* Tile 1 */}
-          <div className="bg-[url('/assets/tile1.png')] bg-cover bg-center rounded-xl p-6 h-44 sm:h-52 backdrop-blur-md bg-black/40 border border-white/10 hover:scale-105 transition cursor-pointer">
-            <p className="text-yellow-400 font-bold text-3xl">Who</p>
-            <p className="text-white text-3xl font-semibold -mt-1">We Are</p>
-          </div>
-
-          {/* Tile 2 */}
-          <div className="bg-[url('/assets/tile2.png')] bg-cover bg-center rounded-xl p-6 h-44 sm:h-52 backdrop-blur-md bg-black/40 border border-white/10 hover:scale-105 transition cursor-pointer">
-            <p className="text-yellow-400 font-bold text-3xl">What</p>
-            <p className="text-white text-3xl font-semibold -mt-1">We Do</p>
-          </div>
-
-          {/* Tile 3 */}
-          <div className="bg-[url('/assets/tile3.png')] bg-cover bg-center rounded-xl p-6 h-44 sm:h-52 backdrop-blur-md bg-black/40 border border-white/10 hover:scale-105 transition cursor-pointer">
-            <p className="text-yellow-400 font-bold text-3xl">Why</p>
-            <p className="text-white text-3xl font-semibold -mt-1">Choose Us</p>
-          </div>
-
-          {/* Tile 4 */}
-          <div className="bg-[url('/assets/tile4.png')] bg-cover bg-center rounded-xl p-6 h-44 sm:h-52 backdrop-blur-md bg-black/40 border border-white/10 hover:scale-105 transition cursor-pointer">
-            <p className="text-yellow-400 font-bold text-3xl">Our</p>
-            <p className="text-white text-3xl font-semibold -mt-1">Strength</p>
-          </div>
-
-          {/* Tile 5 */}
-          <div className="bg-[url('/assets/tile5.png')] bg-cover bg-center rounded-xl p-6 h-44 sm:h-52 backdrop-blur-md bg-black/40 border border-white/10 hover:scale-105 transition cursor-pointer">
-            <p className="text-yellow-400 font-bold text-3xl">Our</p>
-            <p className="text-white text-3xl font-semibold -mt-1">Goal</p>
-          </div>
-        </div>
-      </div>
-
-      {/* ---------------- MOVING MARQUEE STRIP ---------------- */}
-      <div className="absolute bottom-0 left-0 w-full bg-black/85 py-3 z-20 overflow-hidden whitespace-nowrap flex items-center">
-        <p className="text-white text-sm md:text-base font-medium animate-marquee inline-block">
-
-          <span className="text-yellow-400 font-bold">India Infra Update:</span>  
-          Growth in national construction and valuation demand continues upward.  
-          &nbsp; | &nbsp;
-
-          <span className="text-yellow-400 font-bold">Market Trends:</span>  
-          NIFTY trading stable around <span className="text-blue-400 font-bold">25,919</span>.  
-          &nbsp; | &nbsp;
-
-          <span className="text-yellow-400 font-bold">Sector Insight:</span>  
-          Engineering, BFSI & industrial valuation sectors show strong momentum.  
-          &nbsp; | &nbsp;
-
-          <span className="text-yellow-400 font-bold">AVI Consultants:</span>  
-          Delivering trusted advisory excellence for 30+ years.
-        </p>
-      </div>
-
-      {/* -------- KEYFRAMES FOR MARQUEE -------- */}
-      <style>{`
-        .animate-marquee {
-          display: inline-block;
-          white-space: nowrap;
-          animation: marquee 20s linear infinite;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
-        }
-      `}</style>
-    </section>
+      </section>
+    </>
   );
 };
 

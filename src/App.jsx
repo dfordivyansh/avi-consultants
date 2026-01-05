@@ -1,12 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import MainPage from "./pages/MainPage";
+import FullGallery from "./pages/FullGallery";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/gallery" element={<FullGallery />} />
+
       </Routes>
     </Router>
   );
